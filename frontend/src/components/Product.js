@@ -11,7 +11,7 @@ function Product({ product }) {
         </a>
         <Card.Body>
           <a href={`/product/${product._id}`}>
-            <Card.Title as='div'>
+            <Card.Title style={{minHeight: '75px'}} as='div'>
               <strong>{ product.name }</strong>
             </Card.Title>
           </a>
