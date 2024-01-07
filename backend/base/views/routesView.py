@@ -1,9 +1,11 @@
 from django.views import View
 from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
-class RoutesView(View):
-    def get(self, request, *args, **kwargs):
+class RoutesView(APIView):
+    def get(self, request):
         routes = [
             '/api/products',
 
@@ -17,4 +19,4 @@ class RoutesView(View):
             '/api/products/delete/<id>',
             '/api/products/update/<id>',
         ]
-        return JsonResponse(routes, safe=False)
+        return Response(routes)
