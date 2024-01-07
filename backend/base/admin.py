@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
         'numReviews',
     )
 
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
