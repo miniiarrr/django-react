@@ -9,13 +9,23 @@ import {
   Card,
 } from 'react-bootstrap';
 import { useParams } from 'react-router';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Rating from '../components/Rating';
-import products from '../products';
 
 function ProductScreen({ match }) {
   const params = useParams();
-  const product = products.find((p) => p._id === params.id);
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    async function fetch_product() {
+      const { data } = await axios.get(`/api/products/${params.id}`);
+      setProduct(data);
+    }
+
+    fetch_product();
+  }, [params.id]);
 
   return (
     <div>
@@ -23,10 +33,10 @@ function ProductScreen({ match }) {
         Go Back
       </Link>
       <Row>
-        <Col sm={8} md={8} lg={8} xl={10}>
+        <Col sm={8} md={8} lg={9}>
           <Image src={product.image} alt={product.name} fluid />
         </Col>
-        <Col sm={4} md={4} lg={4} xl={2}>
+        <Col sm={4} md={4} lg={3} xl={2}>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
