@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Review
+from .models import Product, Review, Order, OrderItem, ShippingAddress
 
 
 # Register your models here.
@@ -26,3 +26,40 @@ class ReviewAdmin(admin.ModelAdmin):
         'comment',
     )
 
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'paymentMethod',
+        'taxPrice',
+        'shippingPrice',
+        'totalPrice',
+        'isPaid',
+        'paidAt',
+        'isDelivered',
+        'deliveredAt',
+    )
+
+
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = (
+        'product',
+        'order',
+        'name',
+        'qty',
+        'price',
+        'image',
+    )
+
+
+@admin.register(ShippingAddress)
+class ShippingAddressAdmin(admin.ModelAdmin):
+    list_display = (
+        'order',
+        'address',
+        'city',
+        'postalCode',
+        'country',
+    )
