@@ -22,6 +22,7 @@ function ProductScreen({ match }) {
     async function fetch_product() {
       const { data } = await axios.get(`/api/products/${params.id}`);
       setProduct(data);
+      console.log(data.image);
     }
 
     fetch_product();
