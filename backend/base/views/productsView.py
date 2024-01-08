@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from base.models import Product
+from base.serializers import ProductSerializer
 
 
 class ProductsView(APIView):
@@ -11,6 +12,8 @@ class ProductsView(APIView):
             message = {'detail': 'Product not found'}
             return Response(message, status=404)
 
-        return Response(product)
+        serialized_data = ProductSerializer(product).data
+
+        return Response(serialized_data)
 
 
